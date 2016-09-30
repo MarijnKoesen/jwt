@@ -64,11 +64,11 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder = $this->createBuilder();
 
-        $this->assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
-        $this->assertAttributeEquals([], 'claims', $builder);
-        $this->assertAttributeEquals(null, 'signature', $builder);
-        $this->assertAttributeSame($this->encoder, 'encoder', $builder);
-        $this->assertAttributeSame($this->claimFactory, 'claimFactory', $builder);
+        self::assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
+        self::assertAttributeEquals([], 'claims', $builder);
+        self::assertAttributeEquals(null, 'signature', $builder);
+        self::assertAttributeSame($this->encoder, 'encoder', $builder);
+        self::assertAttributeSame($this->claimFactory, 'claimFactory', $builder);
     }
 
     /**
@@ -85,8 +85,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setAudience('test');
 
-        $this->assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
-        $this->assertAttributeEquals(['aud' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
+        self::assertAttributeEquals(['aud' => $this->defaultClaim], 'claims', $builder);
     }
 
     /**
@@ -103,8 +103,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setAudience(['test', 'test2']);
 
-        $this->assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
-        $this->assertAttributeEquals(['aud' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
+        self::assertAttributeEquals(['aud' => $this->defaultClaim], 'claims', $builder);
     }
 
     /**
@@ -121,9 +121,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setAudience('test', true);
 
-        $this->assertAttributeEquals(['aud' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['aud' => $this->defaultClaim], 'claims', $builder);
 
-        $this->assertAttributeEquals(
+        self::assertAttributeEquals(
             ['alg' => 'none', 'typ' => 'JWT', 'aud' => $this->defaultClaim],
             'headers',
             $builder
@@ -143,7 +143,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder = $this->createBuilder();
 
-        $this->assertSame($builder, $builder->setAudience('test'));
+        self::assertSame($builder, $builder->setAudience('test'));
     }
 
     /**
@@ -160,8 +160,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setExpiration(2);
 
-        $this->assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
-        $this->assertAttributeEquals(['exp' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
+        self::assertAttributeEquals(['exp' => $this->defaultClaim], 'claims', $builder);
     }
 
     /**
@@ -178,9 +178,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setExpiration(2, true);
 
-        $this->assertAttributeEquals(['exp' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['exp' => $this->defaultClaim], 'claims', $builder);
 
-        $this->assertAttributeEquals(
+        self::assertAttributeEquals(
             ['alg' => 'none', 'typ' => 'JWT', 'exp' => $this->defaultClaim],
             'headers',
             $builder
@@ -200,7 +200,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder = $this->createBuilder();
 
-        $this->assertSame($builder, $builder->setExpiration(2));
+        self::assertSame($builder, $builder->setExpiration(2));
     }
 
     /**
@@ -217,8 +217,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setId('2');
 
-        $this->assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
-        $this->assertAttributeEquals(['jti' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
+        self::assertAttributeEquals(['jti' => $this->defaultClaim], 'claims', $builder);
     }
 
     /**
@@ -235,9 +235,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setId('2', true);
 
-        $this->assertAttributeEquals(['jti' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['jti' => $this->defaultClaim], 'claims', $builder);
 
-        $this->assertAttributeEquals(
+        self::assertAttributeEquals(
             ['alg' => 'none', 'typ' => 'JWT', 'jti' => $this->defaultClaim],
             'headers',
             $builder
@@ -257,7 +257,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder = $this->createBuilder();
 
-        $this->assertSame($builder, $builder->setId('2'));
+        self::assertSame($builder, $builder->setId('2'));
     }
 
     /**
@@ -274,8 +274,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setIssuedAt(2);
 
-        $this->assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
-        $this->assertAttributeEquals(['iat' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
+        self::assertAttributeEquals(['iat' => $this->defaultClaim], 'claims', $builder);
     }
 
     /**
@@ -292,9 +292,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setIssuedAt(2, true);
 
-        $this->assertAttributeEquals(['iat' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['iat' => $this->defaultClaim], 'claims', $builder);
 
-        $this->assertAttributeEquals(
+        self::assertAttributeEquals(
             ['alg' => 'none', 'typ' => 'JWT', 'iat' => $this->defaultClaim],
             'headers',
             $builder
@@ -314,7 +314,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder = $this->createBuilder();
 
-        $this->assertSame($builder, $builder->setIssuedAt(2));
+        self::assertSame($builder, $builder->setIssuedAt(2));
     }
 
     /**
@@ -331,8 +331,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setIssuer('2');
 
-        $this->assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
-        $this->assertAttributeEquals(['iss' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
+        self::assertAttributeEquals(['iss' => $this->defaultClaim], 'claims', $builder);
     }
 
     /**
@@ -349,9 +349,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setIssuer('2', true);
 
-        $this->assertAttributeEquals(['iss' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['iss' => $this->defaultClaim], 'claims', $builder);
 
-        $this->assertAttributeEquals(
+        self::assertAttributeEquals(
             ['alg' => 'none', 'typ' => 'JWT', 'iss' => $this->defaultClaim],
             'headers',
             $builder
@@ -371,7 +371,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder = $this->createBuilder();
 
-        $this->assertSame($builder, $builder->setIssuer('2'));
+        self::assertSame($builder, $builder->setIssuer('2'));
     }
 
     /**
@@ -388,8 +388,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setNotBefore(2);
 
-        $this->assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
-        $this->assertAttributeEquals(['nbf' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
+        self::assertAttributeEquals(['nbf' => $this->defaultClaim], 'claims', $builder);
     }
 
     /**
@@ -406,9 +406,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setNotBefore(2, true);
 
-        $this->assertAttributeEquals(['nbf' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['nbf' => $this->defaultClaim], 'claims', $builder);
 
-        $this->assertAttributeEquals(
+        self::assertAttributeEquals(
             ['alg' => 'none', 'typ' => 'JWT', 'nbf' => $this->defaultClaim],
             'headers',
             $builder
@@ -428,7 +428,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder = $this->createBuilder();
 
-        $this->assertSame($builder, $builder->setNotBefore(2));
+        self::assertSame($builder, $builder->setNotBefore(2));
     }
 
     /**
@@ -445,8 +445,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setSubject('2');
 
-        $this->assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
-        $this->assertAttributeEquals(['sub' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['alg' => 'none', 'typ' => 'JWT'], 'headers', $builder);
+        self::assertAttributeEquals(['sub' => $this->defaultClaim], 'claims', $builder);
     }
 
     /**
@@ -463,9 +463,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setSubject('2', true);
 
-        $this->assertAttributeEquals(['sub' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['sub' => $this->defaultClaim], 'claims', $builder);
 
-        $this->assertAttributeEquals(
+        self::assertAttributeEquals(
             ['alg' => 'none', 'typ' => 'JWT', 'sub' => $this->defaultClaim],
             'headers',
             $builder
@@ -485,7 +485,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder = $this->createBuilder();
 
-        $this->assertSame($builder, $builder->setSubject('2'));
+        self::assertSame($builder, $builder->setSubject('2'));
     }
 
     /**
@@ -500,7 +500,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->set('userId', 2);
 
-        $this->assertAttributeEquals(['userId' => $this->defaultClaim], 'claims', $builder);
+        self::assertAttributeEquals(['userId' => $this->defaultClaim], 'claims', $builder);
     }
 
     /**
@@ -514,7 +514,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder = $this->createBuilder();
 
-        $this->assertSame($builder, $builder->set('userId', 2));
+        self::assertSame($builder, $builder->set('userId', 2));
     }
 
     /**
@@ -529,7 +529,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->setHeader('userId', 2);
 
-        $this->assertAttributeEquals(
+        self::assertAttributeEquals(
             ['alg' => 'none', 'typ' => 'JWT', 'userId' => $this->defaultClaim],
             'headers',
             $builder
@@ -547,7 +547,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder = $this->createBuilder();
 
-        $this->assertSame($builder, $builder->setHeader('userId', 2));
+        self::assertSame($builder, $builder->setHeader('userId', 2));
     }
 
     /**
@@ -571,7 +571,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = $this->createBuilder();
         $builder->sign($signer, 'test');
 
-        $this->assertAttributeSame($signature, 'signature', $builder);
+        self::assertAttributeSame($signature, 'signature', $builder);
     }
 
     /**
@@ -594,7 +594,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         $builder = $this->createBuilder();
 
-        $this->assertSame($builder, $builder->sign($signer, 'test'));
+        self::assertSame($builder, $builder->sign($signer, 'test'));
 
         return $builder;
     }
@@ -610,7 +610,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
     {
         $builder->unsign();
 
-        $this->assertAttributeSame(null, 'signature', $builder);
+        self::assertAttributeSame(null, 'signature', $builder);
     }
 
     /**
@@ -622,7 +622,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function unsignMustKeepAFluentInterface(Builder $builder)
     {
-        $this->assertSame($builder, $builder->unsign());
+        self::assertSame($builder, $builder->unsign());
     }
 
     /**
@@ -711,9 +711,9 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $tokenSign = new \ReflectionProperty($token, 'signature');
         $tokenSign->setAccessible(true);
 
-        $this->assertAttributeEquals(['1', '2', '3'], 'payload', $token);
-        $this->assertAttributeEquals($token->getHeaders(), 'headers', $builder);
-        $this->assertAttributeEquals($token->getClaims(), 'claims', $builder);
-        $this->assertAttributeSame($tokenSign->getValue($token), 'signature', $builder);
+        self::assertAttributeEquals(['1', '2', '3'], 'payload', $token);
+        self::assertAttributeEquals($token->getHeaders(), 'headers', $builder);
+        self::assertAttributeEquals($token->getClaims(), 'claims', $builder);
+        self::assertAttributeSame($tokenSign->getValue($token), 'signature', $builder);
     }
 }
