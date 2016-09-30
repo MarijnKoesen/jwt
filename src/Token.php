@@ -198,24 +198,6 @@ class Token
     }
 
     /**
-     * Validates if the token is valid
-     *
-     * @param ValidationData $data
-     *
-     * @return bool
-     */
-    public function validate(ValidationData $data): bool
-    {
-        foreach ($this->getValidatableClaims() as $claim) {
-            if (!$claim->validate($data)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
      * Determine if the token is expired.
      *
      * @param DateTimeInterface $now Defaults to the current time.
@@ -236,20 +218,6 @@ class Token
         $expiresAt->setTimestamp($exp);
 
         return $now > $expiresAt;
-    }
-
-    /**
-     * Yields the validatable claims
-     *
-     * @return Generator
-     */
-    private function getValidatableClaims(): Generator
-    {
-        foreach ($this->claims as $claim) {
-            if ($claim instanceof Validatable) {
-                yield $claim;
-            }
-        }
     }
 
     /**
